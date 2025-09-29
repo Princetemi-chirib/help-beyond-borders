@@ -140,7 +140,7 @@ export default function Home() {
       <header className={`w-full sticky top-0 z-50 transition-all ${scrolled ? "bg-white/80 backdrop-blur border-b border-gray-100 shadow-sm" : "bg-white"}`} role="banner">
         <div className="mx-auto max-w-6xl px-4 py-2 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <Image src="/Help Beyond Borders 2.png" alt="Help Beyond Borders logo" width={96} height={96} className="w-10 h-10 sm:w-14 sm:h-14 md:w-24 md:h-24" />
+            <Image src="/Help Beyond Borders 2.png" alt="Help Beyond Borders logo" width={120} height={120} className="w-24 h-24 sm:w-28 sm:h-28 md:w-24 md:h-24" />
           </div>
           <nav className="hidden sm:flex items-center gap-6 text-sm" aria-label="Primary">
             <a href="#about" className={activeSection === "about" ? "text-gray-900" : "text-gray-600 hover:text-gray-900"}>About</a>
@@ -149,16 +149,7 @@ export default function Home() {
             <a href="#gallery" className={activeSection === "gallery" ? "text-gray-900" : "text-gray-600 hover:text-gray-900"}>Gallery</a>
             <a href="#contact" className={activeSection === "contact" ? "text-gray-900" : "text-gray-600 hover:text-gray-900"}>Contact</a>
           </nav>
-          <Link
-            href="https://www.facebook.com/profile.php?id=61562854497628"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Open Help Beyond Borders Nigeria Facebook page (opens in a new tab)"
-            className="rounded-md px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-offset-2"
-            style={{ backgroundColor: brand.green }}
-          >
-            Follow on Facebook
-          </Link>
+          
         </div>
       </header>
 
@@ -200,6 +191,25 @@ export default function Home() {
                   <a href="#contact" className="rounded-md px-4 py-2 md:px-5 md:py-3 text-white font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2" style={{ backgroundColor: brand.green }}>Volunteer with us</a>
                   <a href="#events" className="rounded-md px-4 py-2 md:px-5 md:py-3 text-white font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2" style={{ backgroundColor: brand.blue }}>See impact</a>
                 </motion.div>
+                {/* Mobile-only lively image strip */}
+                <div className="sm:hidden mt-5">
+                  <div className="flex gap-3 overflow-x-auto no-scrollbar pb-1">
+                    {[
+                      "/472695257_122135537990428483_333234654832985239_n.jpg",
+                      "/472787607_122135538266428483_2552163795771427060_n.jpg",
+                      "/473080365_122136501122428483_4420928979589573851_n.jpg",
+                      "/473573347_122136496178428483_6199626131490328684_n.jpg",
+                    ].map((src) => (
+                      <motion.div key={src} whileTap={{ scale: 0.98 }} whileHover={{ scale: 1.03 }} className="shrink-0">
+                        <Image src={src} alt="HBB activity" width={140} height={100} className="rounded-2xl object-cover h-[100px] w-[140px]" />
+                      </motion.div>
+                    ))}
+                  </div>
+                  <style jsx>{`
+                    .no-scrollbar::-webkit-scrollbar { display: none; }
+                    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+                  `}</style>
+                </div>
               </div>
               <motion.div className="relative hidden sm:block w-[280px] h-[220px] md:w-[380px] md:h-[300px]" style={{ x: groupParallaxX, y: groupParallaxY }}>
                 <div className="absolute -z-10 inset-0 rounded-[40px] opacity-25" style={{ background: `radial-gradient(480px 220px at 55% 45%, ${brand.blue}15, transparent)` }} />
