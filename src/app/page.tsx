@@ -169,9 +169,11 @@ export default function Home() {
             <Image src="/476653903_122140310600428483_6164808925201141694_n.jpg" alt="Help Beyond Borders outreach" fill priority className="object-cover" />
             <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/70" />
           </div>
-          <div className="mx-auto max-w-6xl px-4 py-16 md:py-28 lg:py-36" ref={heroRef as any}
+          <div className="mx-auto max-w-6xl px-4 py-16 md:py-28 lg:py-36" ref={heroRef}
             onMouseMove={(e) => {
-              const rect = (heroRef.current as HTMLDivElement).getBoundingClientRect();
+              const el = heroRef.current;
+              if (!el) return;
+              const rect = el.getBoundingClientRect();
               const x = ((e.clientX - rect.left) / rect.width) * 2 - 1; // -1..1
               const y = ((e.clientY - rect.top) / rect.height) * 2 - 1; // -1..1
               mouseX.set(Math.max(-1, Math.min(1, x)));
@@ -307,7 +309,7 @@ export default function Home() {
                 </p>
               </Reveal>
             </div>
-          </div>
+        </div>
         </section>
 
         {/* Impact / Events - framer motion creative layout */}
@@ -350,7 +352,7 @@ export default function Home() {
                   span: "md:col-span-7",
                   img: "/473573347_122136496178428483_6199626131490328684_n.jpg",
                 },
-              ].map((card, idx) => (
+              ].map((card) => (
                 <motion.article
                   key={card.title}
                   className={`group relative overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm ${card.span}`}
